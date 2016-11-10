@@ -1,0 +1,19 @@
+<md-toolbar layout="row">
+    <div class="md-toolbar-tools">
+        <h1 hide-xs>Survey Monster</h1>
+        <span flex></span>
+        <h3>{{viewName}}</h3>
+        <span flex></span>
+    </div>
+</md-toolbar>
+
+<md-content class="md-padding">
+
+    <div>
+        <h3 class="md-display-1 md-warn"    ng-show="vm.params.errorMessage">{{vm.params.errorMessage}}</h3>
+        <h3 class="md-display-1 md-accent"  ng-show="vm.params.warningMessage">{{vm.params.warningMessage}}</h3>
+        <h3 class="md-headline md-primary"  ng-show="vm.params.successMessage">{{vm.params.successMessage}}</h3>
+        <h5 class="md-headline md-primary"  ng-show="vm.params.description">{{vm.params.description}}</h5>
+    </div>
+
+</md-content>

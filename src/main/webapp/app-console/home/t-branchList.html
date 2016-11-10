@@ -1,0 +1,54 @@
+<br/>
+
+<div class="text-center">
+    <span class="pull-left">
+        <button	type="button" class="btn btn-empty btn-sm"
+                   ng-disabled="items.length == 0"
+                   ng-click="vm.refresh()">
+            <i class="fa fa-refresh"></i>
+        </button>
+    </span>
+    &nbsp;
+    <span class="pull-right">
+        <a class="btn btn-empty btn-sm"
+           href="#/branchs/branch">
+            <i class="fa fa-plus"></i> New&nbsp;&nbsp;
+        </a>
+    </span>
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+        <th><small>#</small></th>
+        <th><small>Code</small></th>
+        <th><small>Name</small></th>
+        <th><small>Employees</small></th>
+        <th><small>Customers</small></th>
+        <th><small>Products</small></th>
+        <th><small>Accounts</small></th>
+        <th width="200"><small>&nbsp;</small></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in vm.items">
+        <td class="text-right">{{$index+1}}</td>
+        <td><a ng-href="#/branchs/branch/{{item.id}}">{{item.code}}</a></td>
+        <td>{{item.name}}</td>
+        <td class="text-right"><a ng-href="#/branchs/branch/{{item.id}}/employees">{{item.employees.length}}</a></td>
+        <td class="text-right"><a ng-href="#/branchs/branch/{{item.id}}/customers">{{item.customers.length}}</a></td>
+        <td class="text-right"><a ng-href="#/branchs/branch/{{item.id}}/products">{{item.products.length}}</a></td>
+        <td class="text-right"><a ng-href="#/branchs/branch/{{item.id}}/accounts">{{item.accounts.length}}</a></td>
+        <td class="text-center" width="200">
+            <a href="" ng-click="vm.reset(item.id)">
+                <i class="fa fa-refresh"></i>&nbsp;&nbsp;Reset
+            </a>
+            &nbsp;|&nbsp;
+            <a href="" ng-click="vm.remove(item.id)">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Delete
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+

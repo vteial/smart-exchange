@@ -1,0 +1,11 @@
+!.gitkeep
+.gradle
+.idea
+*.iml
+build/*
+out/*
+logs/*
+data-backup/*
+
+bower_components/*
+node_modules/*

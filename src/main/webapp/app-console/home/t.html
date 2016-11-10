@@ -1,0 +1,65 @@
+<br/>
+
+<div ng-show="(!sessionS.context.applicationUser)">
+    <h1>Welcome!</h1>
+</div>
+
+<div ng-show="(sessionS.context.applicationUser)">
+    <div class="row text-center">
+        <button class="btn btn-empty btn-light"
+                ng-click="vm.execute('/ping')">
+            Ping
+        </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-empty btn-light"
+                ng-click="vm.execute('/build-info')">
+            Build Info
+        </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-empty btn-light"
+                ng-click="vm.execute('/sessions/properties')">
+            Session Properties
+        </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-empty btn-light"
+                ng-click="vm.execute('/console/reset')"
+                ng-show="sessionS.context.localMode">
+            Reset
+        </button>
+    </div>
+    <div class="row">
+        <div class="col md-6">
+            <div class="text-center">
+                <strong>Create Branch Via JSON</strong>
+            </div>
+            <div class="row">
+                <div class="col md-4 text-center">JSON File</div>
+                <div class="col md-8">
+                    <select class="form-control"
+                            ng-model="vm.branchJson"
+                            ng-change="vm.onBranchChange()"
+                            ng-options="item.name for item in vm.branchsJson">
+                    </select>
+                </div>
+            </div>
+            <div>
+                <textarea id="branchJson" class="form-control"
+                          ng-model="vm.branchJson.json"></textarea>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-empty"
+                        ng-click="vm.saveMaster()">
+                    Save
+                </button>
+            </div>
+        </div>
+        <div class="col md-6">
+            <div class="text-center">
+                <strong>Response Message</strong>
+            </div>
+            <div>
+                <pre id="respMessage">{{vm.message | json}}</pre>
+            </div>
+        </div>
+    </div>
+</div>

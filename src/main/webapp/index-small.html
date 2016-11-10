@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Survey Monster</title>
+
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height"/>
+
+    <style>
+        .device-frame {
+            width: 332px;
+            height: 676px;
+            background: url('images/device-small.png') no-repeat left;
+        }
+        .device-frame.center {
+            position: fixed;
+            top: 5px;
+            bottom : 5px;
+            right: 35%;
+        }
+        .device-frame .device-content {
+            width: 291px;
+            height: 520px;
+            margin: 70px 0 0 20px;
+            background-color: #fff;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="center">
+    <div class="device-frame center">
+        <iframe class="device-content" src="index.html"></iframe>
+    </div>
+</div>
+
+</body>
+</html>

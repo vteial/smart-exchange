@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <title>Smart Exchange - Console</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="modules_bower/skyblue/css/skyblue.min.css">
+    <link rel="stylesheet" href="modules_bower/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="modules_bower/pikaday/css/pikaday.css">
+    <link rel="stylesheet" href="modules_bower/sweetalert/dist/sweetalert.css">
+    <link rel="stylesheet" href="modules_bower/ng-notify/dist/ng-notify.min.css">
+    <link rel="stylesheet" href="app-console/default.css">
+
+</head>
+
+<body ng-controller="rootController" ng-cloak>
+
+<header class="bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col md-6">
+                <h2>{{ sessionS.context.appName }} - Console</h2>
+            </div>
+            <div class="col md-4">
+                <div class="padding-y-10" ng-show="(sessionS.context.applicationUser)">
+                    User : <strong>{{ sessionS.context.applicationUser.email }}</strong>
+                </div>
+            </div>
+            <div class="col md-2 text-right">
+                <div class="padding-y-10">
+                    <a class="btn btn-empty" ng-href="{{adminLoginOrLogoutUrl}}">
+                        <i class="fa {{adminLoginOrLoginIcon}} fa-lg"></i> {{ adminLoginOrLoginText }}&nbsp;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col md-2">
+                <strong>{{ viewName }}</strong>
+            </div>
+            <div class="col md-10 text-right">
+                <strong ng-show="(sessionS.context.applicationUser)">
+                    &nbsp;&nbsp;
+                    <a href="#/branchs">Branchs</a>
+                    &nbsp;&nbsp;
+                    <a href="#/settings">Settings</a>
+                    &nbsp;&nbsp;
+                    <a href="#/home"><i class="fa fa-home"></i></a>
+                    &nbsp;&nbsp;
+                </strong>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main class="bg-white">
+    <div class="container" ng-view></div>
+</main>
+
+<footer class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col md-5 text-left">
+                <span class="muted">{{ sessionS.context.appName }} - {{ sessionS.context.appDescription }}</span>
+            </div>
+            <div class="col md-7 text-right">
+                <span class="muted" ng-show="sessionS.context.localMode">
+                    <a href="/_ah/admin/" target="_blank">App Engine Console</a>&nbsp;&nbsp;
+                </span>
+                <span class="muted" ng-repeat="item in sessionS.context.appUrls">
+                    <a href="{{item.url}}" target="_blank">{{ item.name }}</a>&nbsp;&nbsp;
+                </span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="modules_bower/is_js/is.min.js"></script>
+<script src="modules_bower/lodash/dist/lodash.min.js"></script>
+<script src="modules_bower/moment/min/moment.min.js"></script>
+<script src="modules_bower/jquery/dist/jquery.min.js"></script>
+
+<script src="modules_bower/angular/angular.min.js"></script>
+<script src="modules_bower/angular-route/angular-route.min.js"></script>
+<script src="modules_bower/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="modules_bower/angular-messages/angular-messages.min.js"></script>
+<script src="modules_bower/angular-aria/angular-aria.min.js"></script>
+<script src="modules_bower/angular-animate/angular-animate.min.js"></script>
+
+<script src="modules_bower/ngstorage/ngStorage.min.js"></script>
+<script src="modules_bower/clipboard/dist/clipboard.min.js"></script>
+<script src="modules_bower/ngclipboard/dist/ngclipboard.min.js"></script>
+<script src="modules_bower/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+<script src="modules_bower/angular-inputmask/src/green.inputmask4angular.js"></script>
+<script src="modules_bower/sweetalert/dist/sweetalert.min.js"></script>
+<script src="modules_bower/angular-sweetalert/dist/ngSweetAlert.min.js"></script>
+<script src="modules_bower/ng-notify/dist/ng-notify.min.js"></script>
+
+<script src="modules_manual/wyd_angular/wydInit.js"></script>
+<script src="modules_manual/wyd_angular/wydCommon.js"></script>
+<script src="modules_manual/wyd_angular/wydNotifyByNgNotify.js"></script>
+
+<script src="app-console/sessionService.js"></script>
+<script src="app-console/controllers.js"></script>
+<script src="app-console/home/c.js"></script>
+<script src="app-console/console.js"></script>
+
+</body>
+</html>

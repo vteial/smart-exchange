@@ -1,0 +1,134 @@
+
+<md-content ng-show="vm.uiState.isReady">
+
+    <div class="wyd-tabs">
+
+    <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
+        <md-tab label="General" md-on-select="vm.onGeneralSelected()">
+            <md-content class="md-padding">
+                <form name="userDetail">
+                    <div layout="column" layout-gt-xs="row">
+                        <md-input-container flex-gt-sm="30">
+                            <label>* User Id</label>
+                            <input type="email" ng-model="vm.user.userId" ng-required="true"
+                                   name="userUserId" readonly/>
+                        </md-input-container>
+                        <md-input-container flex-gt-sm="30">
+                            <label>* Email Id</label>
+                            <input type="email" ng-model="vm.user.emailId" ng-required="true"
+                                   name="userEmailId" readonly/>
+                        </md-input-container>
+                    </div>
+                    <div layout="column" layout-gt-xs="row">
+                        <md-input-container flex-gt-sm="30">
+                            <label>* First Name</label>
+                            <input type="text" ng-model="vm.user.firstName" ng-required="true"
+                                   wyd-focus-on="userFirstName" ng-pattern="/^[a-zA-Z ]*$/"
+                                   name="userFirstName" minlength="5" maxlength="30"/>
+                            <div ng-messages="userDetail.userFirstName.$error" role="alert">
+                                <div ng-message="required">
+                                    This is required.
+                                </div>
+                                <div ng-message="pattern">
+                                    This should have only alphabets
+                                </div>
+                                <div ng-message="minlength, maxlength">
+                                    This should be between 5 and 30 characters long
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex-gt-sm="30">
+                            <label>* Last Name</label>
+                            <input type="text" ng-model="vm.user.lastName" ng-required="true"
+                                   wyd-focus-on="userLastName"
+                                   name="userLastName" ng-pattern="/^[a-zA-Z ]*$/"/>
+                            <div ng-messages="userDetail.userLastName.$error" role="alert">
+                                <div ng-message="required">
+                                    This is required.
+                                </div>
+                                <div ng-message="pattern">
+                                    This should have only alphabets
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="column" layout-gt-xs="row">
+                        <div flex-gt-xs="25"></div>
+                        <md-button class="md-raised md-primary"
+                                   ng-disabled="vm.uiState.isBlocked"
+                                   ng-click="vm.changeDetails()">
+                            Save
+                        </md-button>
+                    </div>
+                </form>
+            </md-content>
+        </md-tab>
+        </md-tab>
+        <md-tab label="Change Password" md-on-select="vm.onChangePasswordSelected()">
+            <md-content class="md-padding">
+                <form name="userSecret">
+                    <div layout="">
+                        <md-input-container flex-gt-sm="30">
+                            <label>* Current Password</label>
+                            <input type="password" ng-model="vm.user.currentPassword" ng-required="true"
+                                   wyd-focus-on="userCurrentPassword" name="userCurrentPassword"/>
+                            <div ng-messages="userSecret.userCurrentPassword.$error" role="alert">
+                                <div ng-message="required">
+                                    This is required.
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="">
+                        <md-input-container flex-gt-sm="30">
+                            <label>* New Password</label>
+                            <input type="password" ng-model="vm.user.newPassword" ng-required="true"
+                                   wyd-focus-on="userPassword"
+                                   name="userNewPassword" minlength="5" maxlength="20"
+                                   ng-pattern="/^.*(?=.{4,10})(?=.*\d)(?=.*[a-zA-Z]).*$/"/>
+                            <div ng-messages="userSecret.userNewPassword.$error" role="alert">
+                                <div ng-message="required">
+                                    This is required.
+                                </div>
+                                <div ng-message="pattern">
+                                    password should combined with number(s) and characters
+                                </div>
+                                <div ng-message="minlength, maxlength">
+                                    This should be between 5 and 20 characters long
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="">
+                        <md-input-container flex-gt-sm="30">
+                            <label>* Retype New Password</label>
+                            <input type="password" ng-model="vm.user.retypeNewPassword" ng-required="true"
+                                   wyd-focus-on="userRetypePassword"
+                                   name="userRetypeNewPassword" minlength="5" maxlength="20"/>
+                            <div ng-messages="userSecret.userRetypeNewPassword.$error" role="alert">
+                                <div ng-message="required">
+                                    This is required.
+                                </div>
+                                <div ng-message="minlength, maxlength">
+                                    This should be between 5 and 20 characters long
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="column" layout-gt-xs="row">
+                        <div flex-gt-xs="10"></div>
+                        <md-button class="md-raised md-primary"
+                                   ng-disabled="vm.uiState.isBlocked"
+                                   ng-click="vm.changePassword()">
+                            Save
+                        </md-button>
+                    </div>
+                </form>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+
+    </div>
+
+</md-content>
+
