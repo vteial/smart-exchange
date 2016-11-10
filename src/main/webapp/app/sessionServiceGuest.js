@@ -1,5 +1,3 @@
-// @flow
-
 function sessionService($log, $http, $q, $rootScope, wydNotifyService) {
     var basePath = 'sessions';
 
@@ -35,30 +33,6 @@ function sessionService($log, $http, $q, $rootScope, wydNotifyService) {
             }
         }).error(function () {
             deferred.reject("unable fetch properties...");
-        });
-
-        return deferred.promise;
-    };
-
-    service.signUp = function (user) {
-        var path = basePath + '/sign-up';
-
-        var reqUser = {
-            recaptchaValue: user.recaptchaValue,
-            userId: user.userId,
-            password: user.password,
-            retypePassword: user.retypePassword,
-            firstName: user.firstName,
-            lastName: user.lastName
-        };
-        $log.debug(reqUser);
-
-        var deferred = $q.defer();
-        $http.post(path, reqUser).success(function (response) {
-            $log.debug(response);
-            deferred.resolve(response);
-        }).error(function () {
-            deferred.reject("unable to sign up...");
         });
 
         return deferred.promise;

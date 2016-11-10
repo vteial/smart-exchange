@@ -1,6 +1,7 @@
 function homeController($rootScope, $log) {
-    $log.debug('homeController...');
-    $rootScope.viewName = 'Home';
+    var cmpId = 'homeController', cmpName = 'Home';
+    $log.debug(cmpId + '...');
+    $rootScope.viewName = cmpName;
 
     var vm = this;
     vm.uiState = {isReady: false};

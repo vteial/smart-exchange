@@ -1,0 +1,29 @@
+<md-content class="md-padding" ng-show="vm.uiState.isReady">
+
+    <div layout="column" layout-align="start start">
+        <md-subheader class="md-warn" ng-hide="vm.message === null">{{vm.message}}</md-subheader>
+        <md-input-container>
+            <md-icon>person</md-icon>
+            <label>User Id (Email Id)</label>
+            <input type="text" wyd-focus-on="signInUserUserId"
+                   ng-model="vm.user.userId" ng-keyup="vm.processKeyUp($event)"/>
+        </md-input-container>
+        <md-input-container>
+            <md-icon>lock</md-icon>
+            <label>Password</label>
+            <input type="password" ng-model="vm.user.password" ng-keyup="vm.processKeyUp($event)"/>
+        </md-input-container>
+        <div>
+            <md-button class="md-primary md-raised"
+                       ng-disabled="vm.uiState.isBlocked"
+                       ng-click="vm.signIn()">
+                <md-icon>input</md-icon>
+                Sign In
+            </md-button>
+        </div>
+        <!--
+        <p>Lost your password? Reset your password from <a href="#/reset-password-request">here</a>!</p>
+        <p>Do not have an account yet? <a href="#/sign-up">Register</a> and become member!</p>
+        -->
+    </div>
+</md-content>

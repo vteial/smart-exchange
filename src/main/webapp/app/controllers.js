@@ -14,9 +14,10 @@ function dialogController($log, $rootScope, $scope, $mdDialog, arguments) {
 }
 appControllers.controller('dialogController', dialogController);
 
-function messageController($log, $rootScope, $scope, sessionService, $location) {
-    $log.debug('messageController...');
-    $rootScope.viewName = 'Message';
+function messageController($log, $rootScope, $scope) {
+    var cmpId = 'messageController', cmpName = 'Message';
+    $log.debug(cmpId + '...');
+    $rootScope.viewName = cmpName;
 
     var vm = this;
     vm.uiState = {isReady: false};
@@ -31,34 +32,4 @@ function messageController($log, $rootScope, $scope, sessionService, $location) 
     //$log.debug(vm.params);
 }
 appControllers.controller('messageController', messageController);
-
-function termsController($log, $rootScope, $scope) {
-    $log.debug('termsController...');
-    $rootScope.viewName = 'Terms';
-
-    var vm = this;
-    vm.uiState = {isReady: false};
-}
-appControllers.controller('termsController', termsController);
-
-function aboutController($log, $rootScope, $scope) {
-    $log.debug('aboutController...');
-    $rootScope.viewName = 'About';
-
-    var vm = this;
-    vm.uiState = {isReady: false};
-}
-appControllers.controller('aboutController', aboutController);
-
-function testController($log, $rootScope, $scope) {
-    $log.debug('testController...');
-    $rootScope.viewName = 'Test';
-
-    var vm = this;
-    vm.uiState = {isReady: false};
-
-    vm.url = "https://www.youtube.com/watch?v=DM6dLcg0618";
-    $scope.url = vm.url;
-}
-appControllers.controller('testController', testController);
 

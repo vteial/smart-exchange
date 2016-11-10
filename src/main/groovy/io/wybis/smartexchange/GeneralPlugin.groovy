@@ -1,14 +1,7 @@
 package io.wybis.smartexchange
 
 import groovyx.gaelyk.plugins.PluginBaseScript
-import io.wybis.smartexchange.service.impl.DefaultAccountService
-import io.wybis.smartexchange.service.impl.DefaultAutoNumberService
-import io.wybis.smartexchange.service.impl.DefaultBranchService
-import io.wybis.smartexchange.service.impl.DefaultCustomerService
-import io.wybis.smartexchange.service.impl.DefaultEmployeeService
-import io.wybis.smartexchange.service.impl.DefaultProductService
-import io.wybis.smartexchange.service.impl.DefaultSessionService
-import io.wybis.smartexchange.service.impl.DefaultUserService
+import io.wybis.smartexchange.service.impl.*
 
 class GeneralPlugin extends PluginBaseScript {
 
@@ -61,17 +54,17 @@ class GeneralPlugin extends PluginBaseScript {
         sesS.appUserService = users
 
         binding {
-            systemout         = System.out
-            jsonCategory      = JacksonCategory
-            jsonObjectMapper  = JacksonCategory.jsonObjectMapper
+            systemout = System.out
+            jsonCategory = JacksonCategory
+            jsonObjectMapper = JacksonCategory.jsonObjectMapper
             autoNumberService = anS
-            sessionService    = sesS
-            branchService     = bchS
-            accountService    = actS
-            productService    = prdS
-            sesS.userService  = usrS
-            employeeService   = empS
-            customerService   = cusS
+            sessionService = sesS
+            branchService = bchS
+            accountService = actS
+            productService = prdS
+            sesS.userService = usrS
+            employeeService = empS
+            customerService = cusS
 //            orderService      = ordS
 //            tranService       = trnS
 //            transferService   = tfrS

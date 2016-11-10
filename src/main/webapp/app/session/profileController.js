@@ -1,6 +1,7 @@
 function profileController($log, $rootScope, $scope, sessionService, wydNotifyService, wydFocusService, $timeout) {
-    $log.debug('profileController...');
-    $rootScope.viewName = 'Profile';
+    var cmpId = 'profileController', cmpName = 'Profile';
+    $log.debug(cmpId + '...');
+    $rootScope.viewName = cmpName;
 
     var vm = this;
     vm.uiState = {isReady: false, isBlocked: false};

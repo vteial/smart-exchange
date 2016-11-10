@@ -1,6 +1,5 @@
-'use strict';
 
-function rootController($rootScope, $scope, $log, $mdSidenav, $mdDialog, $window, sessionService) {
+function rootController($log, $rootScope, $scope, sessionService, $window, $mdSidenav, $mdDialog) {
     $log.debug('rootController...');
 
     $scope.lodash = _;
@@ -44,17 +43,14 @@ appControllers.controller('rootController', rootController);
 
 var dependents = ['ngRoute', 'ngSanitize', 'ngMessages'];
 dependents.push('ngMaterial');
-//dependents.push('md.data.table');
 dependents.push('ngStorage');
 dependents.push('ngclipboard');
 dependents.push('green.inputmask4angular');
-//dependents.push('ngYoutubeEmbed');
 dependents.push('app.filters');
 dependents.push('app.directives');
 dependents.push('app.services');
 dependents.push('app.controllers');
 var app = angular.module('app', dependents), lodash = _;
-
 
 app.config(function ($httpProvider) {
     $httpProvider.interceptors.push('generalHttpInterceptor');
@@ -83,34 +79,14 @@ function appConfig($routeProvider, $locationProvider) {
         controller: 'homeController as vm'
     });
 
-    $routeProvider.when('/surveys', {
-        templateUrl: 'app/survey/surveyListTemplate.html',
-        controller: 'surveyListController as vm'
+    $routeProvider.when('/counter', {
+        templateUrl: 'app/counter/counterTemplate.html',
+        controller: 'counterController as vm'
     });
 
-    $routeProvider.when('/surveys/survey', {
-        templateUrl: 'app/survey/surveyAddOrEditTemplate.html',
-        controller: 'surveyAddOrEditController as vm'
-    });
-
-    $routeProvider.when('/surveys/survey/:id', {
-        templateUrl: 'app/survey/surveyAddOrEditTemplate.html',
-        controller: 'surveyAddOrEditController as vm'
-    });
-
-    $routeProvider.when('/surveys/survey/:id/questions', {
-        templateUrl: 'app/survey/surveyQuestionListTemplate.html',
-        controller: 'surveyQuestionListController as vm'
-    });
-
-    $routeProvider.when('/surveys/survey/:id/questions/question', {
-        templateUrl: 'app/survey/surveyQuestionAddOrEditTemplate.html',
-        controller: 'surveyQuestionAddOrEditController as vm'
-    });
-
-    $routeProvider.when('/surveys/survey/:id/questions/question/:questionId', {
-        templateUrl: 'app/survey/surveyQuestionAddOrEditTemplate.html',
-        controller: 'surveyQuestionAddOrEditController as vm'
+    $routeProvider.when('/purchase-and-transfer', {
+        templateUrl: 'app/counter/purchaseAndTransferTemplate.html',
+        controller: 'purchaseAndTransferController as vm'
     });
 
     $routeProvider.when('/profile', {
@@ -121,21 +97,6 @@ function appConfig($routeProvider, $locationProvider) {
     $routeProvider.when('/sign-out', {
         templateUrl: 'app/session/signOutTemplate.html',
         controller: 'signOutController as vm'
-    });
-
-    $routeProvider.when('/terms', {
-        templateUrl: 'app/zgeneral/termsTemplate.html',
-        controller: 'termsController as vm'
-    });
-
-    $routeProvider.when('/test', {
-        templateUrl: 'app/zgeneral/testTemplate.html',
-        controller: 'testController as vm'
-    });
-
-    $routeProvider.when('/about', {
-        templateUrl: 'app/zgeneral/aboutTemplate.html',
-        controller: 'aboutController as vm'
     });
 
     $routeProvider.when('/message', {
@@ -166,8 +127,8 @@ function appInit($log, $rootScope, $location, $sessionStorage, $mdSidenav) {
            || curLocPath == '/sign-out') {
            return;
        }
-       $sessionStorage.surveyMonsterCLP = curLocPath;
-       //$log.info('Stored Location : ', $sessionStorage.surveyMonsterCLP);
+       $sessionStorage.smartExchangeCLP = curLocPath;
+       //$log.info('Stored Location : ', $sessionStorage.smartExchangeCLP);
 
        var srcUrl = $location.absUrl().indexOf('home');
        srcUrl = $location.absUrl().substring(0, srcUrl);
@@ -180,19 +141,19 @@ function appInit($log, $rootScope, $location, $sessionStorage, $mdSidenav) {
        }
     });
 
-    $rootScope.$on("$routeChangeSuccess", function (event, next, current) {
-       //$rootScope.isLoading = false;
-
-       // $log.info('Location : ', $location.path());
-       var curLocPath = $location.path();
-       // $log.info('After Current Location : ', curLocPath);
-       //$mdSidenav('left').toggle();
-    });
+    // $rootScope.$on("$routeChangeSuccess", function (event, next, current) {
+    //    //$rootScope.isLoading = false;
+    //
+    //    // $log.info('Location : ', $location.path());
+    //    var curLocPath = $location.path();
+    //    // $log.info('After Current Location : ', curLocPath);
+    //    //$mdSidenav('left').toggle();
+    // });
 
     var path = $location.path();
     $log.info('Actual Location : ', path);
     if (path == '') {
-       var spath = $sessionStorage.surveyMonsterCLP;
+       var spath = $sessionStorage.smartExchangeCLP;
        $log.info('Stored Location : ', spath);
        if (!spath || spath == '/sign-in' || spath == '/not-found') {
            path = '/home';

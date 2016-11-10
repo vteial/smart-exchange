@@ -46,7 +46,7 @@ class DefaultUserService extends AbstractService implements UserService {
             User model = entity as User
             model.cashAccount = Account.get(model.cashAccountId)
             model.cashAccount.product = Product.get(model.cashAccount.productId)
-            models <<  model
+            models << model
         }
 
         return models;
@@ -55,10 +55,11 @@ class DefaultUserService extends AbstractService implements UserService {
     @Override
     public User create(SessionDto sessionUser, User model)
             throws ModelAlreadyExistException {
-        model.userId = model.userId.toLowerCase()
-
-        if (this.findByUserId(model.userId)) {
-            throw new ModelAlreadyExistException()
+        if (model.userId) {
+            model.userId = model.userId.toLowerCase()
+            if (this.findByUserId(model.userId)) {
+                throw new ModelAlreadyExistException()
+            }
         }
 
         if (model.password == null) {
@@ -85,6 +86,9 @@ class DefaultUserService extends AbstractService implements UserService {
             throw new ModelNotFoundException();
         }
 
+        if (nmodel.userId) {
+            emodel.userId = nmodel.userId.toLowerCase()
+        }
         if (nmodel.password) {
             emodel.password = nmodel.password
         }

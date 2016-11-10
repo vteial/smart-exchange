@@ -19,15 +19,17 @@ class DefaultEmployeeService extends DefaultUserService implements EmployeeServi
     AccountService accountService
 
     @Override
-    public void add(SessionDto sessionUser, User model)
+    public User create(SessionDto sessionUser, User model)
             throws ModelAlreadyExistException {
 
         model.type = UserType.EMPLOYEE
         //model.branchId = sessionUser.branchId
 
-        super.create(sessionUser, model)
+        model = super.create(sessionUser, model)
 
         accountService.onEmployeeCreate(sessionUser, model)
+
+        return model;
     }
 
     @Override
@@ -43,7 +45,7 @@ class DefaultEmployeeService extends DefaultUserService implements EmployeeServi
             branchId = branch.id
         }
 
-        this.add(sessionUser, model)
+        model = this.create(sessionUser, model)
 
         branch.virtualEmployeeId = model.id
 

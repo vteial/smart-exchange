@@ -1,272 +1,111 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
-    <title>Survey Monster</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart Exchange</title>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="modules_bower/materialize/dist/css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="modules_bower/angular-material/angular-material.min.css">
 
     <link rel="stylesheet" href="app/default.css" />
-
 </head>
-<body ng-controller="rootController" ng-cloak>
+<body layout="column" ng-controller="rootController" ng-cloak>
 
-<div class="navbar-fixed">
-    <nav class="blue darken-3" role="navigation">
-        <div class="nav-wrapper container">
-            <a id="logo-container" href="index.html" class="brand-logo">Survey Monster</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="#index"><i class="material-icons">home</i></a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#sign-up">Sign Up</a></li>
-                <li><a href="#sign-in">Sign In</a></li>
-            </ul>
-            <ul id="nav-mobile" class="side-nav">
-                <li><a href="#">Navbar Link</a></li>
-            </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+<md-toolbar layout="row">
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" hide-gt-md ng-click="toggleSideNavBar('left')">
+            <md-icon>menu</md-icon>
+        </md-button>
+        <h1 hide-xs>Smart Exchange</h1>
+        <span flex></span>
+        <h3>{{viewName}}</h3>
+        <span flex></span>
+        <!--
+        <md-button ng-click="viewSource()">
+            <md-icon>view</md-icon>
+        </md-button>
+        -->
+    </div>
+</md-toolbar>
+
+<div layout="row" flex>
+
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <md-toolbar hide-gt-md>
+            <span flex></span>
+            <div layout="column" class="md-toolbar-tools-bottom">
+                <h1 class="md-headline">Smart Exchange</h1>
+            </div>
+        </md-toolbar>
+        <md-list>
+            <md-item>
+                <a href="#/home">
+                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <md-icon>home</md-icon>
+                        </div>
+                        <div class="inset">Home</div>
+                    </md-item-content>
+                </a>
+            </md-item>
+            <md-divider></md-divider>
+            <md-item>
+                <a href="#/sign-in">
+                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <md-icon>sign_in</md-icon>
+                        </div>
+                        <div class="inset">Sign In</div>
+                    </md-item-content>
+                </a>
+            </md-item>
+        </md-list>
+    </md-sidenav>
+
+    <div id="content" layout="column" flex md-scroll-y>
+        <div ng-show="isProgress">
+            <md-progress-linear md-mode="indeterminate"></md-progress-linear>
         </div>
-    </nav>
+        <x-ng-view></x-ng-view>
+    </div>
+
 </div>
-
-<div id="index" class="section no-pad-bot scrollspy">
-    <br/><br/>
-    <div class="container">
-        <br><br>
-        <h1 class="header center red-text">Survey Monster</h1>
-        <div class="row center">
-            <h5 class="header col s12 light">A smart survey management appliaction for smart peoples</h5>
-        </div>
-        <div class="row center">
-            <a href="#sign-up" class="btn-large waves-effect waves-light red">Get Started</a>
-        </div>
-    </div>
-</div>
-
-<div id="features" class="blue lighten-5 scrollspy">
-    <div class="container">
-        <div class="section">
-            <div class="row center">
-                <h3 class="header center red-text">Features</h3>
-            </div>
-            <div class="row">
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h3 class="center red-text"><i class="material-icons">flash_on</i></h3>
-                        <h5 class="center">Speeds up development</h5>
-                        <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-                    </div>
-                </div>
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h3 class="center red-text"><i class="material-icons">group</i></h3>
-                        <h5 class="center">User Experience Focused</h5>
-                        <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-                    </div>
-                </div>
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h3 class="center red-text"><i class="material-icons">settings</i></h3>
-                        <h5 class="center">Easy to work with</h5>
-                        <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="sign-up" class="blue lighten-5 scrollspy" ng-controller="signUpController as vm">
-    <div class="container">
-        <div class="section">
-            <div class="row center">
-                <h3 class="header center red-text">Sign Up</h3>
-            </div>
-            <div class="row">
-                <form name="form0">
-                    <h5 ng-show="(vm.message)">{{ vm.message }}</h5>
-                    <div class="row">
-                        <div class="input-field col s12" input-field>
-                            <i class="material-icons prefix">email</i>
-                            <input id="userUserId" type="email" classx="validate"
-                                   name="userUserId"
-                                   ng-model="vm.user.userId"
-                                   wyd-focus-on="userUserId"
-                                   ng-required="true"
-                                   ng-pattern="vm.user.userIdPattern"/>
-                            <label for="userUserId">Email</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 m6" input-field>
-                            <i class="material-icons prefix">lock</i>
-                            <input id="userPassword" type="password" classx="validate"
-                                   name="userPassword"
-                                   ng-model="vm.user.password"
-                                   wyd-focus-on="userPassword"
-                                   ng-required="true"
-                                   ng-pattern="vm.user.passwordPattern"/>
-                            <label for="userPassword">Password</label>
-                        </div>
-                        <div class="input-field col s12 m6" input-field>
-                            <i class="material-icons prefix">lock</i>
-                            <input id="userRetypePassword" type="password" classx="validate"
-                                   name="userRetypePassword"
-                                   ng-model="vm.user.retypePassword"
-                                   wyd-focus-on="userRetypePassword"
-                                   ng-required="true"/>
-                            <label for="userRetypePassword">ReType Password</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 m6" input-field>
-                            <i class="material-icons prefix">account_box</i>
-                            <input id="userFirstName" type="text" classx="validate"
-                                   name="userFirstName"
-                                   ng-model="vm.user.firstName"
-                                   wyd-focus-on="userFirstName"
-                                   ng-required="true"
-                                   ng-pattern="vm.user.firstNamePattern"/>
-                            <label for="userFirstName">First Name</label>
-                        </div>
-                        <div class="input-field col s12 m6" input-field>
-                            <i class="material-icons prefix">account_box</i>
-                            <input id="userLastName" type="text" classx="validate"
-                                   name="userLastName"
-                                   ng-model="vm.user.lastName"
-                                   wyd-focus-on="userLastName"
-                                   ng-required="true"
-                                   ng-pattern="vm.user.lastNamePattern"/>
-                            <label for="userLastName">Last Name</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m6">
-                            <div vc-recaptcha
-                                 key="vm.recaptchaKey" theme="'light'" size="'normal'"
-                                 on-create="vm.setRecaptchaWidgetId(widgetId)"
-                                 on-success="vm.setRecaptchaResponse(response)"
-                                 on-expire="vm.setRecaptchaExpiration()">
-                            </div>
-                        </div>
-                        <div class="col s12 m6 right-align">
-                            <button class="waves-effect waves-light btn-large red"
-                                    ng-disabledx="vm.isSignUpDisabled || vm.uiState.isBlocked"
-                                    ng-click="vm.save()">Sign Up</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="sign-in" class="scrollspy" ng-controller="signInController as vm">
-    <div class="container">
-        <div class="section">
-            <div class="row center">
-                <h3 class="header center red-text">Sign In</h3>
-            </div>
-            <div class="row">
-                <form>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">account_circle</i>
-                            <input id="userId" type="text"
-                                   wyd-focus-on="signInUserUserId"
-                                   ng-model="vm.user.userId"
-                                   ng-keyup="vm.processKeyUp($event)"/>
-                            <label for="userId">User Id</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">lock</i>
-                            <input id="password" type="password"
-                                   ng-model="vm.user.password"
-                                   ng-keyup="vm.processKeyUp($event)"/>
-                            <label for="password">Password</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m6">
-                            &nbsp;
-                        </div>
-                        <div class="col s12 m6 right-align">
-                            <button class="waves-effect waves-light btn-large red"
-                                    ng-disabled="vm.uiState.isBlocked"
-                                    ng-click="vm.signIn()">
-                                <i class="material-icons left">input</i> Sign In
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<footer class="page-footer blue darken-3">
-    <div class="container">
-        <div class="row">
-            <div class="col l10 s12">
-                <h5 class="white-text">About</h5>
-                <p class="grey-text text-lighten-4">
-                    We are a team of college students working on this project like it's our full time job.
-                    Any amount would help support and continue development on this project and is greatly appreciated.
-                </p>
-            </div>
-            <div class="col l2 s12">
-                <h5 class="white-text">Go To</h5>
-                <ul>
-                    <li><a class="white-text" href="#index">Home</a></li>
-                    <li><a class="white-text" href="#features">Features</a></li>
-                    <li><a class="white-text" href="#sign-up">Sign Up</a></li>
-                    <li><a class="white-text" href="#sign-in">Sign In</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            <div class="row center-align">
-                <span>&copy; 2016 Survey Monster, All Rights Reserved.</span>
-                <span>&nbsp;&nbsp;Wybis India Pvt. Ltd.</span>
-            </div>
-        </div>
-    </div>
-</footer>
 
 <script src="modules_bower/is_js/is.min.js"></script>
 <script src="modules_bower/lodash/dist/lodash.min.js"></script>
 <script src="modules_bower/moment/min/moment.min.js"></script>
 <script src="modules_bower/jquery/dist/jquery.min.js"></script>
 
-<script src="modules_bower/materialize/dist/js/materialize.min.js"></script>
-
 <script src="modules_bower/angular/angular.min.js"></script>
+<script src="modules_bower/angular-route/angular-route.min.js"></script>
 <script src="modules_bower/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="modules_bower/angular-animate/angular-animate.min.js"></script>
-<script src="modules_bower/angular-aria/angular-aria.min.js"></script>
 <script src="modules_bower/angular-messages/angular-messages.min.js"></script>
+<script src="modules_bower/angular-aria/angular-aria.min.js"></script>
+<script src="modules_bower/angular-animate/angular-animate.min.js"></script>
+<script src="modules_bower/angular-material/angular-material.min.js"></script>
 
 <script src="modules_bower/ngstorage/ngStorage.min.js"></script>
 <script src="modules_bower/clipboard/dist/clipboard.min.js"></script>
 <script src="modules_bower/ngclipboard/dist/ngclipboard.min.js"></script>
 <script src="modules_bower/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
 <script src="modules_bower/angular-inputmask/src/green.inputmask4angular.js"></script>
+<!--
 <script src="//www.google.com/recaptcha/api.js?render=explicit&onload=vcRecaptchaApiLoaded" async defer></script>
 <script src="modules_bower/angular-recaptcha/release/angular-recaptcha.min.js"></script>
-<script src="modules_node/angular-materialize/src/angular-materialize.min.js"></script>
+-->
 
 <script src="modules_manual/wyd_angular/wydInit.js"></script>
 <script src="modules_manual/wyd_angular/wydCommon.js"></script>
-<script src="modules_manual/wyd_angular/wydNotifyByMaterialize.js"></script>
+<script src="modules_manual/wyd_angular/wydNotifyByMaterial.js"></script>
 
 <script src="app/sessionServiceGuest.js"></script>
+<script src="app/controllers.js"></script>
+<script src="app/session/signInController.js"></script>
+<script src="app/home/indexController.js"></script>
 <script src="app/index.js"></script>
 
 </body>

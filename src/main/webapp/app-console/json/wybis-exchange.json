@@ -35,15 +35,15 @@
   ],
   "employees": [
     {
-      "userId": "munmin2000",
+      "userId": "hasan",
       "password": "1234",
-      "firstName": "Munavar Ali",
+      "firstName": "Hasan",
       "roleId": "manager"
     },
     {
-      "userId": "feroz",
+      "userId": "mohammed",
       "password": "1234",
-      "firstName": "Feroz",
+      "firstName": "Mohammed",
       "roleId": "employee"
     },
     {
@@ -55,12 +55,24 @@
   ],
   "customers": [
     {
-      "firstName": "Arun",
-      "lastName": "Nair"
+      "firstName": "Salim",
+      "lastName": "Khan"
+    },
+    {
+      "firstName": "Akil",
+      "lastName": "Khan"
     },
     {
       "firstName": "Shahul",
       "lastName": "Hameed"
+    },
+    {
+      "firstName": "Ajmal",
+      "lastName": "Khan"
+    },
+    {
+      "firstName": "Feroze",
+      "lastName": "Khan"
     }
   ]
 }

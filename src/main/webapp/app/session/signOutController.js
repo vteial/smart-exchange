@@ -1,6 +1,7 @@
 function signOutController($rootScope, $log, $http, $window) {
-    $log.debug('signOutController...');
-    $rootScope.viewName = 'SignOut';
+    var cmpId = 'signOutController', cmpName = 'SignOut';
+    $log.debug(cmpId + '...');
+    $rootScope.viewName = cmpName;
 
     var vm = this;
     vm.uiState = {isReady: false};

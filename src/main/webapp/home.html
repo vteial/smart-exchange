@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app" ng-controller="rootController">
+<html lang="en" ng-app="app">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,14 +13,14 @@
 
     <link rel="stylesheet" href="app/default.css" />
 </head>
-<body layout="column" ng-cloak>
+<body layout="column" ng-controller="rootController" ng-cloak>
 
 <md-toolbar layout="row">
     <div class="md-toolbar-tools">
         <md-button class="md-icon-button" hide-gt-md ng-click="toggleSideNavBar('left')">
             <md-icon>menu</md-icon>
         </md-button>
-        <h1 hide-xs>Survey Monster</h1>
+        <h1 hide-xs>Smart Exchange</h1>
         <span flex></span>
         <h3>{{viewName}}</h3>
         <span flex></span>
@@ -38,7 +38,7 @@
         <md-toolbar hide-gt-md>
             <span flex></span>
             <div layout="column" class="md-toolbar-tools-bottom">
-                <h1 class="md-headline">Event And Gifts</h1>
+                <h1 class="md-headline">Smart Exchange</h1>
             </div>
         </md-toolbar>
         <md-list>
@@ -53,12 +53,12 @@
                 </a>
             </md-item>
             <md-item>
-                <a href="#/surveys">
+                <a href="#/purchase-and-transfer">
                     <md-item-content md-ink-ripple layout="row" layout-align="start center">
                         <div class="inset">
-                            <md-icon>surveys</md-icon>
+                            <md-icon>purchaseandtransfer</md-icon>
                         </div>
-                        <div class="inset">Surveys</div>
+                        <div class="inset">Purchase And Transfer</div>
                     </md-item-content>
                 </a>
             </md-item>
@@ -83,29 +83,6 @@
                     </md-item-content>
                 </a>
             </md-item>
-            <md-divider></md-divider>
-            <!--
-            <md-item>
-                <a href="#/terms">
-                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
-                        <div class="inset">
-                            <md-icon>terms</md-icon>
-                        </div>
-                        <div class="inset">Terms</div>
-                    </md-item-content>
-                </a>
-            </md-item>
-            <md-item>
-                <a href="#/about">
-                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
-                        <div class="inset">
-                            <md-icon>about</md-icon>
-                        </div>
-                        <div class="inset">About</div>
-                    </md-item-content>
-                </a>
-            </md-item>
-            -->
         </md-list>
     </md-sidenav>
 
@@ -113,7 +90,7 @@
         <div ng-show="isProgress">
             <md-progress-linear md-mode="indeterminate"></md-progress-linear>
         </div>
-            <x-ng-view></x-ng-view>
+        <x-ng-view></x-ng-view>
     </div>
 
 </div>
@@ -136,7 +113,6 @@
 <script src="modules_bower/ngclipboard/dist/ngclipboard.min.js"></script>
 <script src="modules_bower/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
 <script src="modules_bower/angular-inputmask/src/green.inputmask4angular.js"></script>
-<script src="modules_bower/ng-youtube-embed/build/ng-youtube-embed.min.js"></script>
 
 <script src="modules_manual/wyd_angular/wydInit.js"></script>
 <script src="modules_manual/wyd_angular/wydCommon.js"></script>
@@ -147,6 +123,8 @@
 <script src="app/session/signOutController.js"></script>
 <script src="app/session/profileController.js"></script>
 <script src="app/home/homeController.js"></script>
+<script src="app/counter/counterController.js"></script>
+<script src="app/counter/purchaseAndTransferController.js"></script>
 <script src="app/home.js"></script>
 
 </body>

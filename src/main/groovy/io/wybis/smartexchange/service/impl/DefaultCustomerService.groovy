@@ -19,7 +19,7 @@ class DefaultCustomerService extends DefaultUserService implements CustomerServi
     AccountService accountService
 
     @Override
-    public void add(SessionDto sessionUser, User model)
+    public User create(SessionDto sessionUser, User model)
             throws ModelAlreadyExistException {
 
         if (!model.userId) {
@@ -32,9 +32,11 @@ class DefaultCustomerService extends DefaultUserService implements CustomerServi
         model.roleId = Role.ID_CUSTOMER
         //model.branchId = sessionUser.branchId
 
-        super.create(sessionUser, model)
+        model = super.create(sessionUser, model)
 
         accountService.onCustomerCreate(sessionUser, model)
+
+        return model
     }
 
     @Override
@@ -47,6 +49,6 @@ class DefaultCustomerService extends DefaultUserService implements CustomerServi
             branchId = branch.id
         }
 
-        this.add(sessionUser, model)
+        model = this.create(sessionUser, model)
     }
 }
