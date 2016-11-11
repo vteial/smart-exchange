@@ -110,6 +110,7 @@ dependencies {
     compile("com.google.appengine:appengine-api-labs:$gaeVersion")
 
     compile("org.gaelyk:gaelyk:2.1.2")
+    compile("com.itextpdf:itext-xtra:5.5.4")
 
 //    compile('org.modelcatalogue:spreadsheet-builder-poi:0.1.13')
 //    compile('commons-codec:commons-codec:1.10')

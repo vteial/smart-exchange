@@ -80,13 +80,18 @@ function appConfig($routeProvider, $locationProvider) {
     });
 
     $routeProvider.when('/counter', {
-        templateUrl: 'app/counter/counterTemplate.html',
-        controller: 'counterController as vm'
+        templateUrl: 'app/counter/bnsTemplate.html',
+        controller: 'bnsController as vm'
     });
 
     $routeProvider.when('/purchase-and-transfer', {
-        templateUrl: 'app/counter/purchaseAndTransferTemplate.html',
-        controller: 'purchaseAndTransferController as vm'
+        templateUrl: 'app/counter/bntTemplate.html',
+        controller: 'bntController as vm'
+    });
+
+    $routeProvider.when('/reports', {
+        templateUrl: 'app/report/t.html',
+        controller: 'reportController as vm'
     });
 
     $routeProvider.when('/profile', {

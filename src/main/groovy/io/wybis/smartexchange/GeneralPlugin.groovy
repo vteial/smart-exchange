@@ -36,14 +36,14 @@ class GeneralPlugin extends PluginBaseScript {
         bchS.employeeService = empS
         bchS.customerService = cusS
 
-//        DefaultOrderService ordS = new DefaultOrderService()
-//        ordS.autoNumberService = anS
-//        ordS.accountService = actS
-//
-//        DefaultTranService trnS = new DefaultTranService()
-//        trnS.autoNumberService = anS
-//        trnS.orderService      = ordS
-//
+        DefaultOrderService ordS = new DefaultOrderService()
+        ordS.autoNumberService = anS
+        ordS.accountService = actS
+
+        DefaultTranService trnS = new DefaultTranService()
+        trnS.autoNumberService = anS
+        trnS.orderService = ordS
+
 //        DefaultTransferService tfrS = new DefaultTransferService()
 //        tfrS.autoNumberService = anS
 
@@ -65,8 +65,8 @@ class GeneralPlugin extends PluginBaseScript {
             sesS.userService = usrS
             employeeService = empS
             customerService = cusS
-//            orderService      = ordS
-//            tranService       = trnS
+            orderService = ordS
+            tranService = trnS
 //            transferService   = tfrS
         }
 

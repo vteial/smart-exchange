@@ -37,3 +37,6 @@ get  	'/sessions/sign-out',    	                        forward : '/io/wybis/sma
 post 	'/sessions/change-details',     	                forward : '/io/wybis/smartexchange/web/session/changeDetails.groovy'
 post 	'/sessions/change-password',     	                forward : '/io/wybis/smartexchange/web/session/changePassword.groovy'
 
+post	'/sessions/buy-and-transfer',   				    forward : '/io/wybis/smartexchange/web/session/buyAndTransfer.groovy'
+
+get	    '/sessions/current-state-as-report',   				forward : '/io/wybis/smartexchange/web/session/currentStateAsReport.groovy'
