@@ -46,6 +46,8 @@ dependents.push('ngMaterial');
 dependents.push('ngStorage');
 dependents.push('ngclipboard');
 dependents.push('green.inputmask4angular');
+dependents.push('ngMdIcons');
+dependents.push('mdDataTable');
 dependents.push('app.filters');
 dependents.push('app.directives');
 dependents.push('app.services');

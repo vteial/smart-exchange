@@ -1,0 +1,157 @@
+<md-content class="md-padding" xng-show="vm.uiState.isReady">
+
+    <form name="form0" ng-show="vm.isStepOne">
+        <div layout="column" xlayout-gt-xs="row">
+            <md-input-container flex-gt-xs="50">
+                <label>From Customer</label>
+                <md-select name="forCustomer" ng-required="true"
+                           wyd-focus-on="forCustomer"
+                           ng-change="vm.onForCustomer()"
+                           ng-model="vm.model.forUserId">
+                    <md-option ng-value="0">&lt;Select Customer&gt;</md-option>
+                    <md-option ng-repeat="item in vm.forCustomers"
+                               ng-value="item.id">
+                        {{item.firstName}}
+                    </md-option>
+                </md-select>
+                <div ng-messages="form0.forCustomer.$error" role="alert">
+                    <div ng-message="required">
+                        This is required.
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container flex-gt-xs="50">
+                <label>Currency</label>
+                <md-select name="tranStock" ng-required="true"
+                           wyd-focus-on="tranStock"
+                           ng-change="vm.onTranStock()"
+                           ng-model="vm.model.trans[0].accountId">
+                    <md-option ng-value="0">&lt;Select Currency&gt;</md-option>
+                    <md-option ng-repeat="item in vm.stocks"
+                               ng-value="item.id">
+                        {{item.product.code}} - {{item.product.name}}
+                    </md-option>
+                </md-select>
+                <div ng-messages="form0.stock.$error" role="alert">
+                    <div ng-message="required">
+                        This is required.
+                    </div>
+                </div>
+            </md-input-container>
+        </div>
+
+        <div layout="column" xlayout-gt-xs="row">
+            <md-input-container flex-gt-xs="20">
+                <label>Unit</label>
+                <input type="text" name="tranUnit" ng-required="true"
+                       wyd-focus-on="tranUnit"
+                       ng-change="vm.onTranUnit()"
+                       ng-model="vm.model.trans[0].unit"
+                       input-mask="'decimal'"
+                       mask-option="{ allowMinus : false, 'groupSeparator' : ',', 'autoGroup': true, 'digits' : 2 }"/>
+                <div ng-messages="form0.tranUnit.$error" role="alert">
+                    <div ng-message="required">
+                        This is required.
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container flex-gt-xs="20">
+                <label>Rate</label>
+                <input type="text" name="tranRate" ng-required="true"
+                       wyd-focus-on="tranRate"
+                       ng-change="vm.onTranRate()"
+                       ng-model="vm.model.trans[0].rate"
+                       ng-required="true"
+                       input-mask="'decimal'"
+                       mask-option="{ allowMinus : false, 'groupSeparator' : ',', 'autoGroup': true, 'digits' : 5 }">
+                <div ng-messages="form0.tranRate.$error" role="alert">
+                    <div ng-message="required">
+                        This is required.
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container flex-gt-xs="20">
+                <label>Amount</label>
+                <input type="text" name="tranAmount" readonly
+                       ng-model="vm.model.trans[0].amount"
+                       input-mask="'decimal'"
+                       mask-option="{ allowMinus : false, 'groupSeparator' : ',', 'autoGroup': true, 'digits' : 2 }">
+            </md-input-container>
+            <md-input-container flex-gt-xs="20">
+                <label>Profit Rate</label>
+                <input type="text" name="tranProfitRate"
+                       wyd-focus-on="tranProfitRate"
+                       ng-change="vm.onTranProfitRate()"
+                       ng-model="vm.model.trans[0].profitRate"
+                       ng-required="true"
+                       input-mask="'decimal'"
+                       mask-option="{ allowMinus : false, 'groupSeparator' : ',', 'autoGroup': true, 'digits' : 5 }">
+                <div ng-messages="form0.tranProfit.$error" role="alert">
+                    <div ng-message="required">
+                        This is required.
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container flex-gt-xs="20">
+                <label>Profit Amount</label>
+                <input type="text" name="tranProfitAmount" readonly
+                       ng-model="vm.model.trans[0].profitAmount"
+                       input-mask="'decimal'"
+                       mask-option="{ allowMinus : false, 'groupSeparator' : ',', 'autoGroup': true, 'digits' : 2 }">
+            </md-input-container>
+        </div>
+
+        <div layout="column">
+            <md-input-container class="md-block">
+                <label>Description</label>
+                <textarea name="description" columns="1" rows="2"
+                          wyd-focus-on="description"
+                          ng-model="vm.model.description"
+                          minlength="10" maxlength="500"></textarea>
+                <div ng-messages="form0.description.$error" role="alert">
+                    <div ng-message="required">
+                        This is required.
+                    </div>
+                    <div ng-message="minlength, maxlength">
+                        This should be between 10 and 500 characters long
+                    </div>
+                </div>
+            </md-input-container>
+        </div>
+
+        <div layout="column" layout-align="center center">
+            <md-button class="md-raised"
+                       ng-disabled="vm.uiState.isBlocked"
+                       ng-click="vm.proceedToStepTwo()">
+                Proceed
+            </md-button>
+        </div>
+    </form>
+
+    <div ng-show="vm.isStepTwo">
+
+        <div layout="column" layout-align="center center">
+            <h3>Receipt Id : {{vm.model.id}}</h3>
+        </div>
+        <div layout="column" layout-gt-xs="row" layout-align="center center">
+            <md-button class="md-raised"
+                       ng-show="vm.model.id === 0"
+                       ng-disabled="vm.uiState.isBlocked"
+                       ng-click="vm.proceedToStepOne()">
+                Back
+            </md-button>
+            <md-button class="md-raised md-primary"
+                       ng-show="vm.model.id === 0"
+                       ng-disabled="vm.uiState.isBlocked"
+                       ng-click="vm.execute()">
+                Execute
+            </md-button>
+            <md-button class="md-raised md-primary"
+                       ng-show="vm.model.id != 0"
+                       ng-click="vm.init()">
+                Ok
+            </md-button>
+        </div>
+
+    </div>
+</md-content>

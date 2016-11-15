@@ -44,8 +44,8 @@ class GeneralPlugin extends PluginBaseScript {
         trnS.autoNumberService = anS
         trnS.orderService = ordS
 
-//        DefaultTransferService tfrS = new DefaultTransferService()
-//        tfrS.autoNumberService = anS
+        DefaultTransferService tfrS = new DefaultTransferService()
+        tfrS.autoNumberService = anS
 
         DefaultSessionService sesS = new DefaultSessionService()
         sesS.autoNumberService = anS
@@ -67,7 +67,7 @@ class GeneralPlugin extends PluginBaseScript {
             customerService = cusS
             orderService = ordS
             tranService = trnS
-//            transferService   = tfrS
+            transferService   = tfrS
         }
 
 //        routes {

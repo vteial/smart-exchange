@@ -46,13 +46,13 @@ public class Tran extends AbstractModel {
     @Ignore
     double amount
 
+    @Ignore
+    double balanceAmount
+
     double profitRate
 
     @Ignore
     double profitAmount
-
-    @Ignore
-    double balanceAmount
 
     Date date
 

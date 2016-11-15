@@ -3,8 +3,8 @@
   "name": "Wybis Exchange",
   "products": [
     {
-      "code": "AED",
-      "name": "United Arab Dirham",
+      "code": "USD",
+      "name": "United States Dollar",
       "baseUnit": 1,
       "denominator": 1,
       "buyRate": 3.24,
@@ -13,23 +13,23 @@
       "sellPercent": 10
     },
     {
-      "code": "BDD",
-      "name": "Bangladesh Dhaka",
-      "baseUnit": 1,
-      "denominator": 1,
-      "buyRate": 4.43,
-      "buyPercent": 10,
-      "sellRate": 4.48,
-      "sellPercent": 10
-    },
-    {
-      "code": "INR",
-      "name": "Indian Rupee",
+      "code": "GBP",
+      "name": "United Kingdom Pound",
       "baseUnit": 1,
       "denominator": 1,
       "buyRate": 5.34,
       "buyPercent": 10,
       "sellRate": 5.4,
+      "sellPercent": 10
+    },
+    {
+      "code": "EUR",
+      "name": "European Euro",
+      "baseUnit": 1,
+      "denominator": 1,
+      "buyRate": 4.43,
+      "buyPercent": 10,
+      "sellRate": 4.48,
       "sellPercent": 10
     }
   ],
@@ -41,9 +41,9 @@
       "roleId": "manager"
     },
     {
-      "userId": "mustafa",
+      "userId": "mohammed",
       "password": "1234",
-      "firstName": "Mustafa",
+      "firstName": "Mohammed",
       "roleId": "employee"
     },
     {
@@ -55,24 +55,24 @@
   ],
   "customers": [
     {
-      "firstName": "pfl",
-      "lastName": "inv"
+      "firstName": "Salim",
+      "lastName": "Khan"
     },
     {
-      "firstName": "pfl",
-      "lastName": "summruy"
+      "firstName": "Akil",
+      "lastName": "Khan"
     },
     {
-      "firstName": "akbar",
-      "lastName": "ajman"
+      "firstName": "Shahul",
+      "lastName": "Hameed"
     },
     {
-      "firstName": "habib",
-      "lastName": "rak"
+      "firstName": "Ajmal",
+      "lastName": "Khan"
     },
     {
-      "firstName": "julfiqar",
-      "lastName": "bale"
+      "firstName": "Feroze",
+      "lastName": "Khan"
     }
   ]
 }

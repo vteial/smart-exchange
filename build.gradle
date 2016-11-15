@@ -147,6 +147,10 @@ task syncBower(type: Sync) {
     include 'jquery.inputmask/dist/jquery.inputmask.bundle.js'
     include 'angular-inputmask/src/green.inputmask4angular.js'
 
+    include 'md-data-table/dist/md-data-table.js'
+    include 'md-data-table/dist/md-data-table-style.css'
+    include 'md-data-table/dist/md-data-table-templates.js'
+
     into 'src/main/webapp/modules_bower'
 
     includeEmptyDirs = false

@@ -34,7 +34,8 @@
     "ngstorage": "~0.3.4",
     "ng-notify": "~0.7.1",
     "angular-recaptcha": "~3.0.1",
-    "angular-pouchdb": "^5.0.0"
+    "angular-pouchdb": "^5.0.0",
+    "md-data-table": "^2.1.0"
   },
   "resolutions": {
     "angular": "~1.5.8"

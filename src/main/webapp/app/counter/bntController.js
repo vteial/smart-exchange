@@ -1,5 +1,5 @@
 function bntController($log, $rootScope, $scope, wydNotifyService, wydFocusService, dataService, bntService) {
-    var cmpId = 'bntController', cmpName = 'Counter';
+    var cmpId = 'bntController', cmpName = 'Purchase And Transfer';
     $log.debug(cmpId + '...');
     $rootScope.viewName = cmpName;
 
@@ -8,31 +8,17 @@ function bntController($log, $rootScope, $scope, wydNotifyService, wydFocusServi
 
     vm.model = bntService.model;
 
-    vm.onForCustomer = function() {
-        $log.info('forUserId = ' + vm.model.forUserId);
-        vm.model.forUser = dataService.customersMap[vm.model.forUserId];
-        $log.info(vm.model.forUser);
-    };
+    vm.onFromCustomer = bntService.onFromCustomer;
 
-    vm.onTranStock = function() {
-        var accountId = vm.model.trans[0].accountId;
-        $log.info('accountId = ' + accountId);
-        vm.model.trans[0].account = dataService.accountsMap[accountId];
-        $log.info(vm.model.trans[0].account);
-        bntService.onTransactionStock(vm.model.trans[0]);
-    };
+    vm.onTranUnit = bntService.onTranUnit;
 
-    vm.onTranUnit = function() {
-        bntService.onTransactionUnit(vm.model.trans[0]);
-    };
+    vm.onTranRate = bntService.onTranRate;
 
-    vm.onTranRate = function() {
-        bntService.onTransactionRate(vm.model.trans[0]);
-    };
+    vm.onTranProfitRate = bntService.onTranProfitRate;
 
-    vm.onTranProfitRate = function() {
-        bntService.onTransactionProfitRate(vm.model.trans[0]);
-    };
+    vm.onTransferAmount = bntService.onTransferAmount;
+
+    vm.addToCustomer = bntService.addTransfer;
 
     vm.proceedToStepOne = function () {
         vm.isStepOne = true;
@@ -44,37 +30,60 @@ function bntController($log, $rootScope, $scope, wydNotifyService, wydFocusServi
         vm.isStepTwo = true;
     };
 
-    vm.execute = bntService.saveModelAsTransaction;
+    vm.execute = bntService.execute;
 
     vm.init = function(){
+        var tranAccount = bntService.model.tranAccount;
         bntService.init();
+        bntService.model.tranAccount = tranAccount;
         vm.isStepOne = true;
         vm.isStepTwo = false;
-        wydFocusService('forCustomer');
+        wydFocusService('fromCustomer');
     };
-
-    $scope.$on('session:properties', function (event, data) {
-        $log.debug(cmpId + ' on ' + event.name + ' started...');
-        bntService.init();
-        init();
-        $log.debug(cmpId + ' on ' + event.name + ' finished...');
-    });
 
     function init() {
         vm.isStepOne = true;
         vm.isStepTwo = false;
-        vm.forCustomers = dataService.customers;
-        //$log.debug(vm.forCustomers);
-        vm.stocks = _.filter(dataService.accounts, function(item) {
-            return item.type == 'product';
+
+        var fromCustomers = [];
+        if (dataService.customers && dataService.customers.length > 2) {
+            //fromCustomers.push(dataService.customers[0]);
+            fromCustomers.push(dataService.customers[1]);
+            fromCustomers.push(dataService.customers[2]);
+        }
+        vm.fromCustomers = fromCustomers;
+        //$log.debug(vm.fromCustomers);
+
+        var toCustomers = [];
+        if (dataService.customers && dataService.customers.length > 5) {
+            toCustomers.push(dataService.customers[3]);
+            toCustomers.push(dataService.customers[4]);
+            toCustomers.push(dataService.customers[5]);
+        }
+        vm.toCustomers = toCustomers;
+        //$log.debug(vm.toCustomers);
+
+        var stocks = _.filter(dataService.accounts, function (item) {
+            return item.type == 'product' && item.aliasName == 'AED';
         });
-        //$log.debug((vm.stocks);
-        wydFocusService('forCustomer');
+        vm.model.tranAccount = stocks[0];
+        $log.debug(vm.model.tranAccount);
+
+        vm.stocks = _.filter(dataService.accounts, function (item) {
+            return item.type == 'product' && (item.aliasName == 'BDD' || item.aliasName == 'INR');
+        });
+        //$log.debug(vm.stocks);
+
+        wydFocusService('fromCustomer');
     }
 
-    init();
+    $scope.$on('session:properties', function (event, data) {
+        $log.debug(cmpId + ' on ' + event.name + ' started...');
+        //bntService.init();
+        init();
+        $log.debug(cmpId + ' on ' + event.name + ' finished...');
+    });
 
+    init();
 }
 appControllers.controller('bntController', bntController);
-
-
